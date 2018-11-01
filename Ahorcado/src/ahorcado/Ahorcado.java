@@ -46,7 +46,7 @@ public class Ahorcado {
         System.out.println("Escriba una letra");
         letra=leer.next();
         for (int i = 0; i < vpalabra.length; i++) {
-            if (vpalabra[i].equals(letra)){
+            if (vpalabra[i].equals(letra.substring(0, 1))){
                  vresultado[i]=vpalabra[i];
                  letraEncontrada = true;
             }
@@ -54,7 +54,7 @@ public class Ahorcado {
             if (!letraEncontrada) {
                  for (int j = 0; j < 5; j++) {
                     if   (vletra[j]==null){
-                      vletra[j]=letra; 
+                      vletra[j]=letra.substring(0, 1); 
                       j=50;
                     }
                 }
@@ -66,7 +66,7 @@ public class Ahorcado {
     }
     //has ganado
      public static boolean hasganado(String[] vresultado){
-         boolean bandera=true;
+         boolean perdido=true;
          int encontrado=0;
         for (int i = 0; i < vresultado.length; i++) {
                if (vresultado[i].equals(" _ "))
@@ -74,19 +74,22 @@ public class Ahorcado {
         }
         if (encontrado==0){
             System.out.println("HAS GANADO");
-            bandera=false;
+            perdido=false;
         }
-        return bandera;
+        return perdido;
     }
     //dibujamos el dibujo segun el fallo 
     public static boolean pintaMuñeco(int fallos,String palabra){
         boolean bandera = true;
         switch (fallos){
-           // case 0:
-             //   break;
+            case 0:
+                System.out.println("ningun fallo");
+            break;
             case 1:
                 //muñeco has fallado 1 vez
                 System.out.println(" -------------------------");
+                System.out.println("");
+                System.out.println("");
             break;
             case 2:
                  //muñeco   has fallado dos veces
@@ -100,7 +103,9 @@ public class Ahorcado {
                 "    |       \n" +
                 "    |          \n" +
                 "    |       \n" +
-                "    -------------------------");  
+                "    -------------------------");
+                System.out.println("");
+                System.out.println("");
             break;
             case 3:
             //muñeco has fallado 3 veces
@@ -115,6 +120,8 @@ public class Ahorcado {
             "    |           \n" +
             "    |         \n" +
             "    -------------------------");
+            System.out.println("");
+                System.out.println("");
             break; 
             case 4:
                 //muñeco has fallado 4 veces
@@ -129,6 +136,8 @@ public class Ahorcado {
                 "    |           \n" +
                 "    |         \n" +
                 "    -------------------------");
+                System.out.println("");
+                System.out.println("");
             break;
             case 5:
                 //muñeco has perdido      
@@ -143,6 +152,8 @@ public class Ahorcado {
                 "    |           |    \n" +
                 "    |          / \\\n" +
                 "    -------------------------");
+                System.out.println("");
+                System.out.println("");
                 bandera=false;
                 
                 System.out.print("Has perdido la palabra era " +palabra);
@@ -166,7 +177,7 @@ public class Ahorcado {
         inicializar(vresultado);
         iniciarpalabra(vpalabra, palabra);
         
-         bandera = pintaMuñeco(fallos, palabra);
+         
         do {
            
            mostrarvector(vletra);
